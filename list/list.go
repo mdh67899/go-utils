@@ -227,7 +227,7 @@ func (this *Linklist) BatchPopFront(count int) []interface{} {
 
 	this.Lock()
 
-	total := this.L.Len()
+	total := this.len()
 
 	if total == 0 {
 		this.Unlock()
@@ -251,7 +251,7 @@ func (this *Linklist) BatchPopBack(count int) []interface{} {
 
 	this.Lock()
 
-	total := this.L.Len()
+	total := this.len()
 
 	if total == 0 {
 		this.Unlock()
@@ -274,11 +274,11 @@ func (this *Linklist) RemainFrontByNum(count int) {
 	}
 
 	this.Lock()
-	defer this.Unlock()
 
-	total := this.L.Len()
+	total := this.len()
 
 	if total == 0 || total <= count {
+		this.Unlock()
 		return
 	}
 
@@ -295,7 +295,7 @@ func (this *Linklist) RemainBackByNum(count int) {
 
 	this.Lock()
 
-	total := this.L.Len()
+	total := this.len()
 
 	if total == 0 || total <= count {
 		this.Unlock()
