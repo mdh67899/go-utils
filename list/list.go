@@ -269,12 +269,11 @@ func (this *Linklist) BatchPopBack(count int) []interface{} {
 }
 
 func (this *Linklist) PopFront() interface{} {
-	this.Lock()
-
 	if this.Len() < 1 {
-		this.Unlock()
 		return nil
 	}
+
+	this.Lock()
 
 	e := this.L.Front()
 	item := this.L.Remove(e)
@@ -284,12 +283,11 @@ func (this *Linklist) PopFront() interface{} {
 }
 
 func (this *Linklist) PopBack() interface{} {
-	this.Lock()
-
 	if this.Len() < 1 {
-		this.Unlock()
 		return nil
 	}
+
+	this.Lock()
 
 	e := this.L.Back()
 	item := this.L.Remove(e)
