@@ -3,6 +3,7 @@ package content
 import (
 	"bufio"
 	"io"
+	"io/ioutil"
 	"os"
 	"strings"
 )
@@ -34,4 +35,21 @@ func FileContent(FileName string) ([]string, error) {
 		Content = append(Content, strings.TrimSpace(inputString))
 	}
 	return Content, nil
+}
+
+func ToString(filePath string) (string, error) {
+	b, err := ioutil.ReadFile(filePath)
+	if err != nil {
+		return "", err
+	}
+	return string(b), nil
+}
+
+func ToTrimString(filePath string) (string, error) {
+	str, err := ToString(filePath)
+	if err != nil {
+		return "", err
+	}
+
+	return strings.TrimSpace(str), nil
 }
